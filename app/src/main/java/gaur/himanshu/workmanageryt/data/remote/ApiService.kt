@@ -7,4 +7,8 @@ interface ApiService {
     //https://dummyjson.com/quotes/random
     @GET("/quotes/random")
     suspend fun getQuotes(): QuotesDto
+
+    //todo what is the Apiservice Call and what it will Consist
+    // What is the Diffrence Between Apiservices and Retrofit Instance
+
 }

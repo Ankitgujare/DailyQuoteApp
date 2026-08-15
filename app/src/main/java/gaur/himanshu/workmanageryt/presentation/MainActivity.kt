@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import gaur.himanshu.workmanageryt.data.local.QuoteDatabase
+import gaur.himanshu.workmanageryt.domain.model.Quote
 import gaur.himanshu.workmanageryt.presentation.ui.theme.WorkManagerYTTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,6 +21,7 @@ class MainActivity : ComponentActivity() {
             WorkManagerYTTheme {
                 Surface(modifier = Modifier.safeContentPadding()) {
                     MainScreen()
+
                 }
             }
         }
