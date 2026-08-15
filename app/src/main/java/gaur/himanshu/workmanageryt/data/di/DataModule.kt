@@ -1,6 +1,8 @@
 package gaur.himanshu.workmanageryt.data.di
 
 import android.content.Context
+import androidx.compose.runtime.ReusableContent
+import androidx.work.WorkManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,6 +11,9 @@ import dagger.hilt.components.SingletonComponent
 import gaur.himanshu.workmanageryt.data.local.QuoteDao
 import gaur.himanshu.workmanageryt.data.local.QuoteDatabase
 import gaur.himanshu.workmanageryt.data.remote.ApiService
+import gaur.himanshu.workmanageryt.data.reposatory.QuoteRepoImp
+import gaur.himanshu.workmanageryt.domain.reposatory.QuotesReposatory
+import gaur.himanshu.workmanageryt.presentation.ui.theme.WorkManagerYTTheme
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -44,4 +49,17 @@ object DataModule {
     fun provideQuoteDao(quoteDatabase: QuoteDatabase): QuoteDao{
         return quoteDatabase.getQuoteDao()
     }
+
+    @Provides
+    @Singleton
+    fun provideWorkManager(@ApplicationContext context: Context): WorkManager{
+         return WorkManager.getInstance(context)
+    }
+
+    @Provides
+    fun provideQuoteReposatory(workManager: WorkManager,quoteDao: QuoteDao): QuotesReposatory{
+        return QuoteRepoImp(workManager,quoteDao)
+    }
+
+
 }
